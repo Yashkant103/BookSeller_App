@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BookSeller_App.Models.UserModel>
+@TempData["Masssege"]
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Users Table</h5> 
+                <!-- Table with stripped rows -->
+                <div><a asp-action="RegisterUsers" class="btn btn-success" asp-controller="User">Register Users</a></div>
+                @{
+                    if (TempData["Masssege"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            @TempData["Masssege"];
+                        </div>
+                    }
+                }
+                <table class="table datatable">
+                    <thead>
+                        <tr>
+                            <th>User Id</th>
+                            <th>UserName</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>RoleID</th>
+                            <th>Is Active</th>
+                            <th>Created</th>
+                            <th>Modified</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var data in Model)
+                        {
+                            <tr>
+                                <td>@data.UserID</td>
+                                <td>@data.UserName</td>
+                                <td>@data.UserEmail</td>
+                                <td>@data.UserPassword</td>
+                                <td>@data.RoleID</td>
+                                <td>@data.IsActive</td>
+                                <td>@data.Created</td>
+                                <td>@data.Modified</td>
+                                <td>
+                                    <a asp-action="Edit" asp-controller="User" asp-route-UserID="@data.UserID" class="bi bi-pencil-square btn btn-primary"></a>
+                                    <a asp-action="DeleteUsers" asp-controller="User" onclick="return conformedelete();" asp-route-UserID="@data.UserID" class="bi bi-trash btn btn-danger"></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    <script>
+        function conformedelete() {
+            if (confirm("Are you sure to delete this record??")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+    </script>
+}
