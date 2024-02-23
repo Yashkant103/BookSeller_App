@@ -11,4 +11,11 @@
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
     }
+
+    public class Role_DropDown
+    {
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
+    }
+
 }

@@ -18,12 +18,12 @@
                 <table class="table datatable">
                     <thead>
                         <tr>
-                            <th>User Id</th>
-                            <th>UserName</th>
+                            <th>ID</th>
+                            <th>Name</th>
                             <th>Email</th>
-                            <th>Password</th>
+                            @* <th>Password</th> *@
                             <th>RoleID</th>
-                            <th>Is Active</th>
+                            <th>IsActive</th>
                             <th>Created</th>
                             <th>Modified</th>
                             <th>Action</th>
@@ -37,14 +37,14 @@
                                 <td>@data.UserID</td>
                                 <td>@data.UserName</td>
                                 <td>@data.UserEmail</td>
-                                <td>@data.UserPassword</td>
+                                @* <td>@data.UserPassword</td> *@
                                 <td>@data.RoleID</td>
                                 <td>@data.IsActive</td>
                                 <td>@data.Created</td>
                                 <td>@data.Modified</td>
                                 <td>
-                                    <a asp-action="Edit" asp-controller="User" asp-route-UserID="@data.UserID" class="bi bi-pencil-square btn btn-primary"></a>
-                                    <a asp-action="DeleteUsers" asp-controller="User" onclick="return conformedelete();" asp-route-UserID="@data.UserID" class="bi bi-trash btn btn-danger"></a>
+                                    <a asp-action="Edit" asp-controller="User" asp-route-UserID="@data.UserID" class="bi bi-pencil-square btn btn-success"></a>
+                                    <a asp-action="Delete" asp-controller="User" onclick="return conformedelete();" asp-route-UserID="@data.UserID" class="bi bi-trash btn btn-danger"></a>
                                 </td>
                             </tr>
                         }

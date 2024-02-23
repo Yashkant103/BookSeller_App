@@ -1,56 +1,38 @@
-﻿@model BookSeller_App.Models.UserModel;
-<h2> Add/Edit Page</h2>
+﻿@model BookSeller_App.Models.UserModel
+<h2>@ViewBag.Message.ToString()</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Post" asp-controller="User">
-            <div>
-            </div>
             @Html.HiddenFor(x => x.UserID)
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="UserName" class="control-lable"></label>
-                <input asp-for="UserName" class="form-control"></input>
+            <div class="form-group m-3">
+                <label asp-for="UserName" class="control-label"></label>
+                <input type="text" asp-for="UserName" class="form-control" />
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="UserEmail" class="control-lable"></label>
-                <input asp-for="UserEmail" class="form-control"></input>
+            <div class="form-group m-3">
+                <label asp-for="UserEmail" class="control-label"></label>
+                <input type="text" asp-for="UserEmail" class="form-control" />
                 <span asp-validation-for="UserEmail" class="text-danger"></span>
-            </div
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="UserPassword" class="control-lable"></label>
-                <input asp-for="UserPassword" class="form-control"></input>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="UserPassword" class="control-label"></label>
+                <input type="text" asp-for="UserPassword" class="form-control" />
                 <span asp-validation-for="UserPassword" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="RoleID" class="control-lable"></label>
-                <input asp-for="RoleID" class="form-control"></input>
+            <div class="form-group m-3">
+                <label asp-for="RoleID" class="control-label"></label>
+                <input type="text" asp-for="RoleID" class="form-control" />
                 <span asp-validation-for="RoleID" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <span class="text-danger">*</span>
-                <label asp-for="IsActive" class="control-lable"></label>
-                <input asp-for="IsActive" class="form-control"></input>
+            <div class="form-group m-3">
+                <label asp-for="IsActive" class="control-label"></label>
+                @* <input type="checkbox" @(Model.IsActive == true ? "checked" : " ") name="IsActive "/>  *@
+                <input type="text" asp-for="IsActive" class="form-control"/>
                 <span asp-validation-for="IsActive" class="text-danger"></span>
             </div>
-            @* <div class="form-group">
-            <span class="text-danger">*</span>
-            <label asp-for="Created" class="control-lable"></label>
-            <input type="datetime" asp-for="Created" class="form-control"></input>
-            <span asp-validation-for="Created" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-            <span class="text-danger">*</span>
-            <label asp-for="Modified" class="control-lable"></label>
-            <input type="datetime" asp-for="Modified" class="form-control"></input>
-            <span asp-validation-for="Modified" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <button asp-action="Post" class="btn btn-primary">Save</button>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Save</button>
                 <a class="btn btn-info" asp-action="GetAllUsers">Back To List</a>
             </div>
         </form>

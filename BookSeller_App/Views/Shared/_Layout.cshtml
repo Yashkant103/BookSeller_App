@@ -122,7 +122,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" asp-action="Login" asp-controller="Account">
+                            <a class="dropdown-item d-flex align-items-center" asp-action="Logout" asp-controller="User">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
@@ -242,10 +242,11 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>Address Book</span></strong>. All Rights Reserved
+            &#169; Copyright <strong><span>Book Seller></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a asp-controller="Home" asp-action="Index">darsh</a>
+            Designed by <a asp-controller="Home" asp-action="Index">YK</a>
+            @DateTime.UtcNow.Year
         </div>
     </footer><!-- End Footer -->
 

@@ -1,32 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-
 namespace BookSeller_App.BAL
 {
     public class CheckAccess : ActionFilterAttribute, IAuthorizationFilter
     {
-
-        public void OnAuthorization(AuthorizationFilterContext filterContext)
+        public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var rd = filterContext.RouteData;
-            _ = rd.Values["action"].ToString();
-            _ = rd.Values["controller"].ToString();
-
-
-            if (filterContext.HttpContext.Session.GetString("UserName") == null)
-            {
-                filterContext.HttpContext.Session.Clear();
-                filterContext.Result = new RedirectResult("~/Login");
-            }
+            if (context.HttpContext.Session.GetString("UserID") == null) context.Result = new RedirectResult("~/User/Login");
         }
-
-        public override void OnResultExecuting(ResultExecutingContext filterContext)
+        public override void OnResultExecuting(ResultExecutingContext context)
         {
-            filterContext.HttpContext.Response.Headers.CacheControl = "no-cache, no-store, must-revalidate";
-            filterContext.HttpContext.Response.Headers.Expires = "-1";
-            filterContext.HttpContext.Response.Headers.Pragma = "no-cache";
-
-            base.OnResultExecuting(filterContext);
+            context.HttpContext.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+            context.HttpContext.Response.Headers["Expires"] = "-1";
+            context.HttpContext.Response.Headers["pragma"] = "no-cache";
+            base.OnResultExecuting(context);
         }
     }
 }
