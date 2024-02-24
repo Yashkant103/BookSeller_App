@@ -1,0 +1,32 @@
+﻿@model BookSeller_App.Models.GenreModel
+
+@{
+    ViewData["Title"] = "AddGenre";
+}
+
+<h1>@ViewBag.Action</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Post" asp-controller="Genre">
+            @Html.HiddenFor(x => x.GenreID)
+            <div class="mb-3">
+                <label for="GenreName" asp-for="GenreName" class="form-label">Genre Name :</label>
+                <input type="text" id="GenreName" name="GenreName" asp-for="GenreName" class="form-control" />
+                <span class="text-danger" asp-validation-for="GenreName"></span>
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+                @* <a href="@Url.Action("GetAllGenres", "Genre")" class="btn btn-secondary">Back to List</a> *@
+                <a class="btn btn-info" asp-action="GetAllGenres">Back To List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

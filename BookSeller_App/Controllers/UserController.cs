@@ -31,6 +31,7 @@ namespace BookSeller_App.Controllers
         {
             List<UserModel> users = new List<UserModel>();
             HttpResponseMessage response = _httpClient.GetAsync($"{_httpClient.BaseAddress}/User/Get").Result;
+            ViewBag.RoleList = dropDowns();
             if (response.IsSuccessStatusCode)
             {
                 string data = response.Content.ReadAsStringAsync().Result;
@@ -80,7 +81,8 @@ namespace BookSeller_App.Controllers
         {
             UserModel userModel = new UserModel();
             HttpResponseMessage response = await _httpClient.GetAsync($"{baseAddress}/User/GetById/" + UserID);
-            ViewBag.Message = "Edit User";
+            ViewBag.RoleList = dropDowns();
+            //ViewBag.Message = "Edit User";
 
             if (response.IsSuccessStatusCode)
             {
@@ -101,7 +103,7 @@ namespace BookSeller_App.Controllers
 
                 string data = JsonConvert.SerializeObject(userModel);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-                ViewBag.Message = "Register User";
+                //ViewBag.Message = "Register User";
                 if (userModel.UserID == 0)
                 {
                     HttpResponseMessage response = _httpClient.PostAsync($"{baseAddress}/User/Post/", content).Result;
@@ -113,7 +115,7 @@ namespace BookSeller_App.Controllers
                 }
                 else
                 {
-                    HttpResponseMessage response = await _httpClient.PutAsync($"{baseAddress}/User/Update/", content);
+                    HttpResponseMessage response = await _httpClient.PutAsync($"{baseAddress}/User/Put/", content);
                     if (response.IsSuccessStatusCode)
                     {
                         TempData["Masssege"] = "User Updated Successfully";
@@ -136,7 +138,7 @@ namespace BookSeller_App.Controllers
         public List<Role_DropDown> dropDowns()
         {
             List<Role_DropDown> role = new List<Role_DropDown>();
-            HttpResponseMessage r = _httpClient.GetAsync($"{baseAddress}/Role/Getall").Result;
+            HttpResponseMessage r = _httpClient.GetAsync($"{baseAddress}/UserRole/Get").Result;
             if (r.IsSuccessStatusCode)
             {
                 string data = r.Content.ReadAsStringAsync().Result;

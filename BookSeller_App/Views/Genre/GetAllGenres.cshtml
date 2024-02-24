@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BookSeller_App.Models.GenreModel>
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="card-title mb-0">Genre Tables</h5>
+                        <a asp-action="AddGenre" class="btn btn-success" asp-controller="Genre"><i class="bi bi-plus-circle"></i> Add Genre</a>
+                    </div>
+                    @{
+                        if (TempData["Message"] != null)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                @TempData["Message"]
+                            </div>
+                        }
+                    }
+                    <table class="table table-striped table-hover mt-3">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>GenreID</th>
+                                <th>GenreName</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var data in Model)
+                            {
+                                <tr>
+                                    <td>@data.GenreID</td>
+                                    <td>@data.GenreName</td>
+                                    <td>
+                                        <a asp-action="Edit" asp-controller="Genre" asp-route-GenreID="@data.GenreID" class="btn btn-success"><i class="bi bi-pencil-square"></i> </a>
+                                        <a asp-action="DeleteGenre" asp-controller="Genre" onclick="return confirm('Are you sure you want to delete this Genre?')" asp-route-GenreID="@data.GenreID" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function conformedelete() {
+            if (confirm("are you sure to delete this record??")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    </script>
+}

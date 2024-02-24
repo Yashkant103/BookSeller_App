@@ -1,0 +1,39 @@
+﻿@model BookSeller_App.Models.AuthorModel
+
+@{
+    ViewData["Title"] = "AddAuhtor";
+}
+
+<h1>@ViewBag.Action</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Post" asp-controller="Author">
+            @Html.HiddenFor(x => x.AuthorID)
+            <div class="mb-3">
+                <label for="AuthorName" asp-for="AuthorName" class="form-label">Author Name :</label>
+                <input type="text" id="AuthorName" name="AuthorName" asp-for="AuthorName" class="form-control" />
+                <span class="text-danger" asp-validation-for="AuthorName"></span>
+            </div>
+            <div class="form-group">
+                <label for="AuthorEmail" class="form-label" asp-for="AuthorEmail">Author Email :</label>
+                <input type="email" id="AuthorEmail" name="AuthorEmail" asp-for="AuthorEmail" class="form-control" />
+                <span class="text-danger" asp-validation-for="AuthorEmail"></span>
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+                @* <a href="@Url.Action("GetAllAuthors", "Author")" class="btn btn-secondary">Back to List</a> *@
+                <a class="btn btn-info" asp-action="GetAllAuthors">Back To List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }

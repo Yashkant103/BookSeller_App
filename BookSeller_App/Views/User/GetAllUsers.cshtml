@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<BookSeller_App.Models.UserModel>
-@TempData["Masssege"]
+@* @TempData["Masssege"] *@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -10,7 +10,7 @@
                 @{
                     if (TempData["Masssege"] != null)
                     {
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success" id="Message" role="alert">
                             @TempData["Masssege"];
                         </div>
                     }
@@ -33,12 +33,21 @@
                     <tbody>
                         @foreach (var data in Model)
                         {
+                            String User = "";
+                            @foreach (var roles in ViewBag.RoleList)
+                            {
+                                if (roles.RoleID == data.RoleID)
+                                {
+                                    User = roles.RoleName;
+                                }
+                            }
                             <tr>
                                 <td>@data.UserID</td>
                                 <td>@data.UserName</td>
                                 <td>@data.UserEmail</td>
                                 @* <td>@data.UserPassword</td> *@
-                                <td>@data.RoleID</td>
+                                @* <td>@data.RoleID</td> *@
+                                <td>@User</td>
                                 <td>@data.IsActive</td>
                                 <td>@data.Created</td>
                                 <td>@data.Modified</td>
@@ -67,6 +76,13 @@
                 return false;
             }
         }
+        function delayedFunction() {
+            // Your function logic here
+            document.getElementById("Message").remove();
+        }
+
+        // Call the delayed function after 5 seconds
+        setTimeout(delayedFunction, 5000);
 
     </script>
 }
